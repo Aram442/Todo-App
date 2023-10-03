@@ -4,6 +4,10 @@ import { collection, onSnapshot, where, query } from "firebase/firestore";
 import Header from "./header/Header";
 import AddTodo from "./todo/AddTodo";
 
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+
 function HomePage() {
   const [todos, setTodos] = useState(null);
 
@@ -25,10 +29,11 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Hello This is home page</h1>
-      <Header />
       <AddTodo />
-      {todoItems}
+      <Card>
+        <CardContent>{todoItems}</CardContent>
+        <CardActions>buttons will come here !!</CardActions>
+      </Card>
     </div>
   );
 }
