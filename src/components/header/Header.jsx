@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import IconButton from '@mui/material/IconButton';
-import { MoonIcon, SunIcon } from '../icons';
+// import { MoonIcon, SunIcon } from "../icons";
 import { useAuth } from "../../AuthContext";
 
 function Header() {
@@ -22,9 +22,9 @@ function Header() {
           <IconButton
             color="primary"
             aria-label="theme switcher"
-            onClick={setCurrentTheme}
+            // onClick={setCurrentTheme}
           >
-            {currentTheme === Theme.DARK ? <SunIcon /> : <MoonIcon />}
+            {/* {currentTheme === Theme.DARK ? <SunIcon /> : <MoonIcon />} */}
           </IconButton>
         </Grid>
       </header>
