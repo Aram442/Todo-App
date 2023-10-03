@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useContext, useState } from "react";
+import React, { KeyboardEvent, useState } from "react";
 import Box from "@mui/material/Box";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -6,16 +6,27 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { useAuth } from "../../AuthContext";
 // import { TodoCard } from "../todo-card";
 
 function AddTodo() {
   const [todoText, setTodoText] = useState();
+  const { user } = useAuth();
 
   const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      console.log(event.target.value);
+      const inputValue = event.target.value;
+      if (inputValue) {
+      }
+      addDoc(collection(db, "todos"), {
+        name: inputValue,
+        isCompleted: false,
+        userId: user.uid,
+      });
     }
   };
+
+  // --------------------------------------- RETUREN ---------------------------------------------------//
   return (
     <div>
       <Card>

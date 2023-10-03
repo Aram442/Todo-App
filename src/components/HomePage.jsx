@@ -27,6 +27,7 @@ function HomePage() {
     <span key={String(todo.id)}>{todo.title}</span> // key={String(todo.id)} to fix (Warning: Each child in a list should have a unique "key" prop.)
   ));
 
+  // --------------------------------------- RETUREN ---------------------------------------------------//
   return (
     <div>
       <AddTodo />
