@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useContext } from "react";
+import React, { KeyboardEvent, useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -9,6 +9,13 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 // import { TodoCard } from "../todo-card";
 
 function AddTodo() {
+  const [todoText, setTodoText] = useState();
+
+  const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "enter") {
+      console.log(event.target);
+    }
+  };
   return (
     <div>
       <Card>
