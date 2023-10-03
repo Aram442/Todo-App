@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import Header from "./header/Header";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 import {
   getAuth,
@@ -14,6 +15,16 @@ const auth = getAuth();
 
 function LoginPage() {
   const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const setEmailValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const setPasswordValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -39,10 +50,31 @@ function LoginPage() {
       });
   };
 
+  const signUp = () => {};
+  const signInWithEmailAndPassword = () => {};
   return (
     <div>
+      <TextField
+        onChange={setEmail}
+        id="Email"
+        label="Email"
+        variant="filled"
+      />
+      <TextField
+        onChange={setPassword}
+        type="password"
+        id="Password"
+        label="Password"
+        variant="filled"
+      />
+      <Button variant="text" onClick={signUp}>
+        Signup
+      </Button>
       <Button variant="text" onClick={signInWithGoogle}>
         Login
+      </Button>
+      <Button variant="text" onClick={signInWithEmailAndPassword}>
+        Login with Google
       </Button>
       {user && <h2>{user.displayName}</h2>}
       <Header />
