@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  doc,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot, where, query } from "firebase/firestore";
 import Header from "./header/Header";
 
 function HomePage() {
   const [todos, setTodos] = useState(null);
 
-  const q = query(collection(db, "todos"));
+  const q = query(collection(db, "todos"), where("userId", "==", "user?.uid"));
   useEffect(() => {
     const unsub = onSnapshot(q, (querySnapshot) => {
       const todos = [];
