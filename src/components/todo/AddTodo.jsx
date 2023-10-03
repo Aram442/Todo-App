@@ -17,12 +17,12 @@ function AddTodo() {
     if (event.key === "Enter") {
       const inputValue = event.target.value;
       if (inputValue) {
+        addDoc(collection(db, "todos"), {
+          name: inputValue,
+          isCompleted: false,
+          userId: user?.uid,
+        });
       }
-      addDoc(collection(db, "todos"), {
-        name: inputValue,
-        isCompleted: false,
-        userId: user.uid,
-      });
     }
   };
 
