@@ -7,7 +7,8 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
@@ -23,7 +24,7 @@ function LoginPage() {
   };
 
   const setPasswordValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setPassword(event.target.value);
   };
 
   const signInWithGoogle = () => {
@@ -49,31 +50,64 @@ function LoginPage() {
         // ...
       });
   };
+  // --------------------------------------- SIGN UP ---------------------------------------------------//
+  const signUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        setUser(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
 
-  const signUp = () => {};
-  const signInWithEmailAndPassword = () => {};
+  // --------------------------------------- SIGN IN --------------------------------------------------//
+  const loginWihtEmailAndPassword = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
+  // --------------------------------------- RETUREN ---------------------------------------------------//
   return (
     <div>
       <TextField
-        onChange={setEmail}
-        id="Email"
+        id="filled-basic"
+        value={email}
+        onChange={setEmailValue}
+        fullWidth
         label="Email"
         variant="filled"
       />
       <TextField
-        onChange={setPassword}
-        type="password"
-        id="Password"
+        id="filled-basic"
         label="Password"
+        value={password}
+        fullWidth
+        type="password"
+        onChange={setPasswordValue}
         variant="filled"
       />
       <Button variant="text" onClick={signUp}>
         Signup
       </Button>
-      <Button variant="text" onClick={signInWithGoogle}>
+      <Button variant="text" onClick={loginWihtEmailAndPassword}>
         Login
       </Button>
-      <Button variant="text" onClick={signInWithEmailAndPassword}>
+      <Button variant="text" onClick={signInWithGoogle}>
         Login with Google
       </Button>
       {user && <h2>{user.displayName}</h2>}
