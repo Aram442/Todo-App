@@ -10,9 +10,10 @@ import { useAuth } from "../../AuthContext";
 // import { TodoCard } from "../todo-card";
 
 function AddTodo() {
-  const [todoText, setTodoText] = useState();
+  const [todoText, setTodoText] = useState("");
   const { user } = useAuth();
 
+  // ----------------------------- GETTING DATA AND WRITING IN DATABASE ---------------------------------//
   const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const inputValue = event.target.value;
@@ -20,8 +21,9 @@ function AddTodo() {
         addDoc(collection(db, "todos"), {
           name: inputValue,
           isCompleted: false,
-          userId: user?.uid,
+          userId: user,
         });
+        setTodoText(inputValue);
       }
     }
   };
@@ -30,6 +32,7 @@ function AddTodo() {
   return (
     <div>
       <h1>{user}</h1>
+
       <Card>
         <CardContent
           sx={{
@@ -56,6 +59,7 @@ function AddTodo() {
           </Box>
         </CardContent>
       </Card>
+      <p>{todoText}</p>
     </div>
   );
 }
