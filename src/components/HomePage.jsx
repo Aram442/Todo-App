@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  doc,
+  query,
+} from "firebase/firestore";
 import Header from "./header/Header";
 
 function HomePage() {
   const [todos, setTodos] = useState(null);
 
-  async function getTodos() {
-    const todosCol = collection(db, "todos");
-    try {
-      const todoSnapshot = await getDocs(todosCol);
-      const todoList = todoSnapshot.docs.map((doc) => doc.data());
-      setTodos(todoList);
-    } catch (error) {
-      console.error("Error fetching todos:", error);
-    }
-  }
-
+  const q = query(collection(db, "todos"));
   useEffect(() => {
-    getTodos();
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      const todos = [];
+      querySnapshot.forEach((doc) => {
+        todos.push(doc.data());
+      });
+      setTodos(todos);
+    });
+    return unsub;
   }, []);
 
   const todoItems = todos?.map((todo) => (
@@ -33,5 +36,4 @@ function HomePage() {
     </div>
   );
 }
-
 export default HomePage;
