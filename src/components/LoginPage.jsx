@@ -27,6 +27,7 @@ function LoginPage() {
     setPassword(event.target.value);
   };
 
+  // ------------------------------- SIGN UP WITH GOOGLE ACCOUNT ----------------------------------//
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -50,7 +51,8 @@ function LoginPage() {
         // ...
       });
   };
-  // --------------------------------------- SIGN UP ---------------------------------------------------//
+
+  // ------------------------------- SIGN UP WITH EMAIL & PASSWORD ----------------------------------//
   const signUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
