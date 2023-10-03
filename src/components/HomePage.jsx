@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, onSnapshot, where, query } from "firebase/firestore";
 import Header from "./header/Header";
+import AddTodo from "./todo/AddTodo";
 
 function HomePage() {
   const [todos, setTodos] = useState(null);
@@ -26,6 +27,7 @@ function HomePage() {
     <div>
       <h1>Hello This is home page</h1>
       <Header />
+      <AddTodo />
       {todoItems}
     </div>
   );
