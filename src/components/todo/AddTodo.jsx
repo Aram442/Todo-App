@@ -12,8 +12,8 @@ function AddTodo() {
   const [todoText, setTodoText] = useState();
 
   const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "enter") {
-      console.log(event.target);
+    if (event.key === "Enter") {
+      console.log(event.target.value);
     }
   };
   return (
@@ -39,7 +39,7 @@ function AddTodo() {
               fullWidth
               label="Add Todo"
               variant="standard"
-              //   onKeyPress={onKeyPress}
+              onKeyPress={onKeyPress}
             />
           </Box>
         </CardContent>
