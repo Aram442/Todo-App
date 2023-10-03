@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import Header from "./header/Header";
 import Button from "@mui/material/Button";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  User,
+} from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -23,7 +28,6 @@ function LoginPage() {
         // ...
       })
       .catch((error) => {
-        console.log(error);
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -38,8 +42,10 @@ function LoginPage() {
   return (
     <div>
       <Button variant="text" onClick={signInWithGoogle}>
-        Text
+        Login
       </Button>
+      {user && <h2>{user.displayName}</h2>}
+      <Header />
     </div>
   );
 }

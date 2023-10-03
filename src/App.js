@@ -18,7 +18,7 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      <main>App</main>
+      <main></main>
       <footer>&copy; 2022</footer>
     </div>
   );
