@@ -23,7 +23,7 @@ function AddTodo() {
           isCompleted: false,
           userId: user,
         });
-        setTodoText(inputValue);
+        setTodoText(inputValue); // 1: 18 - 20
       }
     }
   };
