@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+#root {
+  background-image:url(./img/bg-desktop-light.jpg);
+}
