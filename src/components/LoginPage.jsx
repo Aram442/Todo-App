@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import Header from "./header/Header";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useAuth } from "../AuthContext";
 
 import {
   getAuth,
@@ -15,9 +16,7 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
 function LoginPage() {
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { user, email, password, setUser, setEmail, setPassword } = useAuth();
 
   const setEmailValue = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
