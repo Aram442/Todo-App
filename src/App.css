@@ -39,4 +39,5 @@
 
 #root {
   background-image:url(./img/bg-desktop-light.jpg);
+  background-repeat: no-repeat;
 }

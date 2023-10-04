@@ -3,6 +3,10 @@ import { db } from "../firebase";
 import { collection, onSnapshot, where, query } from "firebase/firestore";
 import Header from "./header/Header";
 import AddTodo from "./todo/AddTodo";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -24,7 +28,15 @@ function HomePage() {
   }, []);
 
   const todoItems = todos?.map((todo) => (
-    <span key={String(todo.id)}>{todo.title}</span> // key={String(todo.id)} to fix (Warning: Each child in a list should have a unique "key" prop.)
+    <div key={String(todo.id)}>
+      <ListItem>
+        <ListItemButton>
+          <ListItemText>
+          {todo.title}
+          </ListItemText>
+        </ListItemButton>
+      </ListItem>
+    </div> // key={String(todo.id)} to fix (Warning: Each child in a list should have a unique "key" prop.)
   ));
 
   // --------------------------------------- RETUREN ---------------------------------------------------//
@@ -33,7 +45,7 @@ function HomePage() {
       <AddTodo />
       <Card>
         <CardContent>{todoItems}</CardContent>
-        <CardActions>buttons will come here !!</CardActions>
+        <CardActions></CardActions>
       </Card>
     </div>
   );

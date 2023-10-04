@@ -1,8 +1,11 @@
 import React, { useState, ChangeEvent } from "react";
 import Header from "./header/Header";
+import { useAuth } from "../AuthContext";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useAuth } from "../AuthContext";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 
 import {
   getAuth,
@@ -85,34 +88,40 @@ function LoginPage() {
   // --------------------------------------- RETUREN ---------------------------------------------------//
   return (
     <div>
-      <TextField
-        id="filled"
-        value={email}
-        onChange={setEmailValue}
-        fullWidth
-        label="Email"
-        variant="filled"
-      />
-      <TextField
-        id="filled-basic"
-        label="Password"
-        value={password}
-        fullWidth
-        type="password"
-        onChange={setPasswordValue}
-        variant="filled"
-      />
-      <Button variant="text" onClick={signUp}>
-        Signup
-      </Button>
-      <Button variant="text" onClick={loginWihtEmailAndPassword}>
-        Login
-      </Button>
-      <Button variant="text" onClick={signInWithGoogle}>
-        Login with Google
-      </Button>
-      {user && <h2>{user.displayName}</h2>}
       <Header />
+      <Card>
+        <CardContent>
+          <TextField
+            id="filled"
+            value={email}
+            onChange={setEmailValue}
+            fullWidth
+            label="Email"
+            variant="filled"
+          />
+          <TextField
+            id="filled-basic"
+            label="Password"
+            value={password}
+            fullWidth
+            sx={{mb: 2}}
+            type="password"
+            onChange={setPasswordValue}
+            variant="filled"
+          />
+        </CardContent>
+        <CardActions>
+          <Button variant="text" onClick={signUp}>
+            Signup
+          </Button>
+          <Button variant="text" onClick={loginWihtEmailAndPassword}>
+            Login
+          </Button>
+          <Button variant="text" onClick={signInWithGoogle}>
+            Login with Google
+          </Button>
+        </CardActions>
+      </Card>
     </div>
   );
 }

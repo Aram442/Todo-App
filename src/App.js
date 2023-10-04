@@ -18,9 +18,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-
-      <main></main>
-      <footer>&copy; 2022</footer>
     </Container>
   );
 }
